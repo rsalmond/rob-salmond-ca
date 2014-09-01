@@ -1,0 +1,1 @@
+Just a quick update; I've been getting a fair bit of Japanese comment spam lately (I'm lookin at you here Paul) so I'm enabling comment moderation. <br /><br />So for those of you who can't moderate yourselves, I got ya covered.

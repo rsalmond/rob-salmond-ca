@@ -1,0 +1,1 @@
+<a href="/content/images/2008/04/april-20th.png"><img style="margin: 0px auto 10px; display: block; text-align: center; cursor: pointer;" src="/content/images/2008/04/april-20th.png" alt="" id="BLOGGER_PHOTO_ID_5191200206466722418" border="0" /></a><br />Once again, a happy four two zero to all.

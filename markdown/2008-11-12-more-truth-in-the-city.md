@@ -1,0 +1,1 @@
+Some crazy business went on the other night at the movies.  Fortunately my man Ogcin <a href="http://wizardofog.blogspot.com/2008_11_01_archive.html#4964070779770565804">spells it out</a> better than I woulda.  Read on for the chuckle.

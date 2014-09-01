@@ -1,0 +1,1 @@
+<div>Just a quick update while I drink my coffee. I'm in Hammer Lake outside Wawa making for Marathon and I've picked up a riding partner with whom I have quite a bit in common. Head over to <a href="http://bwtour.wordpress.com/">his blog</a> for the full story.<br /></div>

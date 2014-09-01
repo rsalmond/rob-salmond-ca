@@ -1,0 +1,1 @@
+<div><p>Departure brews at casa del Joel.</p><br/><img src="/content/images/2012/08/IMG_20120805_120747.png" /></div>

@@ -1,0 +1,1 @@
+<div><p>We've almost finished the North edge of lake Superior, having breakfast this morning at a place called The Hungry Moose and learning about traditional Canadian slang.</p><br/><img src="/content/images/2012/07/1342015189260.png" /></div>
