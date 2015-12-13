@@ -1,7 +1,7 @@
 // # Ghost bootloader
 // Orchestrates the loading of Ghost
 // When run from command line.
-
+require('traceview');
 var ghost = require('./core'),
     errors = require('./core/server/errors');
 
