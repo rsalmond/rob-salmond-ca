@@ -5,7 +5,7 @@
 
 {{! The big featured header on the homepage, with the site logo and description }}
 <!-- Site header area, dark backbround, or grab image -->
-<header class="site-head" {{#if @blog.cover}}style="background-image: url({{@blog.cover}})"{{/if}}>
+<header class="site-head" {{#if @blog.cover}}style="background-image: url({{@blog.cover}}); background-repeat: round"{{/if}}>
 	<div class="container">
 		<!-- Vertically center -->
 		<div class="vertical">
@@ -26,9 +26,9 @@
 	<div class="container">
 		<!-- Manually add in Twitter/any link until Ghost supports social -->
 		<ul class="social-nav">
-			<li class="twitter"><a href="#">Twitter</a></li>
+			<li class="twitter"><a href="#">twitter</a></li>
 			<li class="github"><a href="#">github</a></li>
-			<li class="dribbble"><a href="#">dribbble</a></li>
+			<li class="tumblr"><a href="#">tumblr</a></li>
 		</ul>
 	</div>
 </div><!-- END .sub-head -->
