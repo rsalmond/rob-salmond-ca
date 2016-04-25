@@ -62,7 +62,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .site-head {
   background-color: #2b303b;
-  padding: 100px 0px 100px 0px; }
+  padding: 100px 0px 100px 0px; 
+  background-repeat: round}
 
 .blog-title a {
   text-align: center;
