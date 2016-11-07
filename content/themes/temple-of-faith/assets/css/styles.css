@@ -34,16 +34,19 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0px;
     text-align: center; }
     .sub-head ul.social-nav li.twitter:before {
-      content: url(http://i.imgur.com/GXcr9XG.png);
+      content: url(https://i.imgur.com/GXcr9XG.png);
+      padding: 0px 5px 0px 0px; }
+    .sub-head ul.social-nav li.info:before {
+      content: url(https://i.imgur.com/QwJhJls.png);
       padding: 0px 5px 0px 0px; }
     .sub-head ul.social-nav li.github:before {
-      content: url(http://i.imgur.com/CwUcGbq.png);
+      content: url(https://i.imgur.com/CwUcGbq.png);
       padding: 0px 5px 0px 0px; }
     .sub-head ul.social-nav li.tumblr:before {
-      content: url(http://i.imgur.com/fvAmP8p.png);
+      content: url(https://i.imgur.com/fvAmP8p.png);
       padding: 0px 5px 0px 0px; }
     .sub-head ul.social-nav li.dribbble:before {
-      content: url(http://i.imgur.com/KWpUL7z.png);
+      content: url(https://i.imgur.com/KWpUL7z.png);
       padding: 0px 5px 0px 0px; }
     .sub-head ul.social-nav li {
       display: inline-block;
@@ -68,7 +71,6 @@ h1, h2, h3, h4, h5, h6 {
 .blog-title a {
   text-align: center;
   font-family: "Futura", "Avenir", "Helvetica Neue", Helvetica, sans-serif;
-  text-transform: uppercase;
   color: #fff;
   font-size: 45pt;
   font-weight: 900;
