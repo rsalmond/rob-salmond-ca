@@ -1,52 +1,68 @@
-var moment  = require('moment'),
-    path    = require('path'),
-    when    = require('when'),
-    baseStore;
+var moment = require('moment'),
+    path = require('path');
 
-// TODO: would probably be better to put these on the prototype and have proper constructors etc
-baseStore = {
-    'getTargetDir': function (baseDir) {
-        var m = moment(new Date().getTime()),
-            month = m.format('MMM'),
-            year =  m.format('YYYY');
+function StorageBase() {
+    Object.defineProperty(this, 'requiredFns', {
+        value: ['exists', 'save', 'serve', 'delete'],
+        writable: false
+    });
+}
 
-        if (baseDir) {
-            return path.join(baseDir, year, month);
-        }
+StorageBase.prototype.getTargetDir = function (baseDir) {
+    var m = moment(),
+        month = m.format('MM'),
+        year = m.format('YYYY');
 
-        return path.join(year, month);
-    },
-    'generateUnique': function (store, dir, name, ext, i, done) {
-        var self = this,
-            filename,
-            append = '';
+    if (baseDir) {
+        return path.join(baseDir, year, month);
+    }
 
-        if (i) {
-            append = '-' + i;
-        }
+    return path.join(year, month);
+};
 
+StorageBase.prototype.generateUnique = function (store, dir, name, ext, i) {
+    var self = this,
+        filename,
+        append = '';
+
+    if (i) {
+        append = '-' + i;
+    }
+
+    if (ext) {
         filename = path.join(dir, name + append + ext);
+    } else {
+        filename = path.join(dir, name + append);
+    }
 
-        store.exists(filename).then(function (exists) {
-            if (exists) {
-                setImmediate(function () {
-                    i = i + 1;
-                    self.generateUnique(store, dir, name, ext, i, done);
-                });
-            } else {
-                done.resolve(filename);
-            }
-        });
-    },
-    'getUniqueFileName': function (store, image, targetDir) {
-        var done = when.defer(),
-            ext = path.extname(image.name),
-            name = path.basename(image.name, ext).replace(/[\W]/gi, '-');
+    return store.exists(filename).then(function (exists) {
+        if (exists) {
+            i = i + 1;
+            return self.generateUnique(store, dir, name, ext, i);
+        } else {
+            return filename;
+        }
+    });
+};
 
-        this.generateUnique(store, targetDir, name, ext, 0, done);
+StorageBase.prototype.getUniqueFileName = function (store, image, targetDir) {
+    var ext = path.extname(image.name), name;
 
-        return done.promise;
+    // poor extension validation
+    // .1 is not a valid extension
+    if (!ext.match(/.\d/)) {
+        name = this.getSanitizedFileName(path.basename(image.name, ext));
+        return this.generateUnique(store, targetDir, name, ext, 0);
+    } else {
+        name = this.getSanitizedFileName(path.basename(image.name));
+        return this.generateUnique(store, targetDir, name, null, 0);
     }
 };
 
-module.exports = baseStore;
+StorageBase.prototype.getSanitizedFileName = function getSanitizedFileName(fileName) {
+    // below only matches ascii characters, @, and .
+    // unicode filenames like город.zip would therefore resolve to ----.zip
+    return fileName.replace(/[^\w@.]/gi, '-');
+};
+
+module.exports = StorageBase;
