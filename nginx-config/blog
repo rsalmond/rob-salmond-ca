@@ -1,0 +1,119 @@
+server { 
+    listen 80;
+    server_name rob.salmond.ca;
+    return 301 https://$host$request_uri;
+}
+
+server {
+  listen 443 ssl;
+  server_name rob.salmond.ca;
+
+  #ssl config
+  ssl_certificate /etc/letsencrypt/live/rob.salmond.ca/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/rob.salmond.ca/privkey.pem;
+
+
+  location /resume {
+    return 301 https://github.com/rsalmond/resume;
+  }
+
+  #misc static crap
+  location /files/ {
+    # redirect sequencer requests
+    if ($http_user_agent ~ AppNeta) {
+      return 301 https://www.appneta.com/;
+    }
+
+    # compound if condition, check for x-tv-meta header and safari user agent (that's appview)
+    # https://gist.github.com/jrom/1760790
+    if ($http_x_tv_meta) {
+      set $appview A;
+    }
+
+    if ($http_user_agent ~ Safari) {
+      set $appview "${appview}A";
+    }
+
+    if ($appview = AA) {
+      return 301 https://www.appneta.com/;
+    }
+
+    alias /var/www/files/;
+    autoindex on;
+  }
+
+  location /ghost {
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+    proxy_set_header X-NginX-Proxy true;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_pass http://localhost:2370;
+    proxy_redirect off;	
+  }
+
+  location /public {
+    # redirect sequencer requests
+    if ($http_user_agent ~ AppNeta) {
+      return 301 https://www.appneta.com/;
+    }
+
+    # compound if condition, check for x-tv-meta header and safari user agent (that's appview)
+    # https://gist.github.com/jrom/1760790
+    if ($http_x_tv_meta) {
+      set $appview A;
+    }
+
+    if ($http_user_agent ~ Safari) {
+      set $appview "${appview}A";
+    }
+
+    if ($appview = AA) {
+      return 301 https://www.appneta.com/;
+    }
+
+    alias /home/phro/rob-salmond-ca/core/built/public;
+  }
+
+  location /assets {
+    alias /home/phro/rob-salmond-ca/content/themes/Ghostly-master/assets;
+  }
+
+  location /ghost/scripts {
+    alias /home/phro/rob-salmond-ca/core/built/scripts;
+  }
+
+  location /content/images {
+    alias /home/phro/rob-salmond-ca/content/images;
+  }
+
+	#node / ghost blog
+	location / {
+    # redirect sequencer requests
+    if ($http_user_agent ~ AppNeta) {
+      return 301 https://www.appneta.com/;
+    }
+
+    # compound if condition, check for x-tv-meta header and safari user agent (that's appview)
+    # https://gist.github.com/jrom/1760790
+    if ($http_x_tv_meta) {
+      set $appview A;
+    }
+
+    if ($http_user_agent ~ Safari) {
+      set $appview "${appview}A";
+    }
+
+    if ($appview = AA) {
+      return 301 https://www.appneta.com/;
+    }
+		proxy_ignore_headers X-Accel-Expires Expires Cache-Control;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header Host $http_host;
+		proxy_set_header X-NginX-Proxy true;
+		proxy_set_header X-Forwarded-Proto $scheme;
+		proxy_pass http://localhost:2370;
+		proxy_redirect off;	
+	}
+}
