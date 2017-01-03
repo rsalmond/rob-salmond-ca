@@ -7,6 +7,4 @@ ADD . /blog
 
 RUN cd /blog && npm install --production
 
-VOLUME ["/blog/content"]
-
 CMD cd /blog && NODE_ENV="production" npm start
