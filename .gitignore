@@ -26,3 +26,5 @@ node_modules
 
 # sqllite db
 *.db
+
+*.swp
