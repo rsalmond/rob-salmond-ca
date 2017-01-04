@@ -30,7 +30,8 @@ config = {
             connection: {
               socketPath: '/var/run/mysqld.sock',
               user: 'ghost',
-              password: 'ghostpass'
+              password: 'ghostpass',
+              database: 'ghostblog',
             },
             debug: false
           },
@@ -56,7 +57,8 @@ config = {
             connection: {
               socketPath: '/var/run/mysqld.sock',
               user: 'ghost',
-              password: 'ghostpass'
+              password: 'ghostpass',
+              database: 'ghostblog',
             },
             debug: false
           },
