@@ -28,7 +28,7 @@ config = {
         database: {
           client: 'mysql',
             connection: {
-              socketPath: '/var/run/mysqld.sock',
+              socketPath: '/var/run/mysqld/mysqld.sock',
               user: 'ghost',
               password: 'ghostpass',
               database: 'ghostblog',
@@ -55,7 +55,7 @@ config = {
         database: {
           client: 'mysql',
             connection: {
-              socketPath: '/var/run/mysqld.sock',
+              socketPath: '/var/run/mysqld/mysqld.sock',
               user: 'ghost',
               password: 'ghostpass',
               database: 'ghostblog',
