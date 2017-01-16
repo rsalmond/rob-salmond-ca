@@ -7,4 +7,4 @@ ADD . /blog
 
 RUN cd /blog && npm install --production
 
-CMD cd /blog && NODE_ENV="production" npm start
+CMD cd /blog && NODE_ENV="development" npm start
